@@ -1,13 +1,17 @@
 
 let username , gameMode , gameLevel,SecondPlayer;
 
-if( document.referrer != 'http://127.0.0.1:5500/index.html') {
-     alert("Page is Not accesissble this way!");
-        document.location.assign("http://127.0.0.1:5500/index.html")
+if( document.referrer.split("/").at(-1) != 'index.html') {
+        swal.fire({
+                title: "Not accesible this way!",
+                icon: "error",
+              }).then(() => {
+                document.location.assign("index.html");
+              })
 }else{
-    let username = localStorage.getItem("username");
-    let gameMode = localStorage.getItem("gameMode");
-    let gameLevel = localStorage.getItem("gameLevel");
+        username = localStorage.getItem("username");
+        gameMode = localStorage.getItem("gameMode");
+        gameLevel = localStorage.getItem("gameLevel");
     
     console.log(username,gameMode,gameLevel);
 }
@@ -61,7 +65,7 @@ function drawCircle(){
                 currentCircle.classList.add("redCircle");
                 currentPlayer=playerYellow;
 
-        if(gameMode == "PC") { 
+        if(gameMode === "PC") { 
                 //setTimeout(pcTurn, 1000)
                 pcTurn()
         }
@@ -74,11 +78,7 @@ function drawCircle(){
         console.log(r,c);
         freeColumns[c]-=1;
         
-     checkWinner(gameLevel)
-                //  checkHz();
-                // checkVl();
-                // checkDiagonalAntiClockWise();
-                // checkDiagonalClockWise();
+     checkWinner(gameLevel);
         
 }}
 
@@ -188,7 +188,7 @@ function showWinnerStatus(winner){
                   if (result.isConfirmed) {    
                         conf();
                   } else if (result.isDenied) {    
-                        document.location.assign("http://127.0.0.1:5500/index.html")
+                        document.location.assign("index.html")
                        }
               });
           
@@ -204,7 +204,7 @@ function pcTurn(){
         }
 
         while(true){
-        c = getRandom(0,7)
+        c = getRandom(0,7);
         r = freeColumns[c];
         if(r<0){continue;}
         if(board[r][c] === " "){break;}
@@ -238,7 +238,7 @@ function conf (){
                         console.log(b);
                         gameOver=false;
                         pressed=false;
-                        freeColumns=[5,5,5,5,5,5,5]
+                        freeColumns=[5,5,5,5,5,5,5];
                         currentPlayer = playerRed;
                 }
         }
