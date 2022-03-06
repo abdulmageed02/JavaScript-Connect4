@@ -66,11 +66,11 @@ function drawCircle(){
         console.log(r,c);
         freeColumns[c]-=1;
         
-        //checkWinner("Hard")
-                 checkHz();
-                checkVl();
-                checkDiagonalAntiClockWise();
-                checkDiagonalClockWise();
+        checkWinner("Hard")
+                //  checkHz();
+                // checkVl();
+                // checkDiagonalAntiClockWise();
+                // checkDiagonalClockWise();
         
 }}
 
@@ -145,12 +145,13 @@ function showWinnerStatus(winner){
         if(confirm("Do you want to restart ? ")){
                 for(let i=0;i<board.length;i++){
                         for(let j=0;j<board[i].length;j++){
-                                board[r][c]=" ";
+                                board[i][j]=" ";
                                 let b = document.getElementById(i.toString()+"-"+j.toString());
                                 b.classList.remove("redCircle","yellowCircle");
                                 console.log(b);
                                 gameOver=false;
                                 pressed=false;
+                                freeColumns=[5,5,5,5,5,5,5]
                         }
                 }
                 
