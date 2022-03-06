@@ -1,15 +1,16 @@
 
+let username , gameMode , gameLevel,SecondPlayer;
 
-// if( document.referrer != 'http://127.0.0.1:5500/index.html') {
-//      alert("Page is Not accesissble this way!");
-//         document.location.assign("http://127.0.0.1:5500/index.html")
-// }else{
-//     let username = localStorage.getItem("username");
-//     let gameMode = localStorage.getItem("gameMode");
-//     let gameLevel = localStorage.getItem("gameLevel");
+if( document.referrer != 'http://127.0.0.1:5500/index.html') {
+     alert("Page is Not accesissble this way!");
+        document.location.assign("http://127.0.0.1:5500/index.html")
+}else{
+    let username = localStorage.getItem("username");
+    let gameMode = localStorage.getItem("gameMode");
+    let gameLevel = localStorage.getItem("gameLevel");
     
-//     console.log(username,gameMode,gameLevel);
-// }
+    console.log(username,gameMode,gameLevel);
+}
 
 let playerRed = "Red"
 let playerYellow = "yellow"
@@ -22,7 +23,6 @@ let freeColumns = []
 let pressed = false
 let startBtn = document.getElementById("btn");
 let circle;
-let gameMode = "";
 let confDiv;
 
 window.onload=function(){
@@ -74,7 +74,7 @@ function drawCircle(){
         console.log(r,c);
         freeColumns[c]-=1;
         
-     checkWinner("Hard")
+     checkWinner(gameLevel)
                 //  checkHz();
                 // checkVl();
                 // checkDiagonalAntiClockWise();
@@ -84,20 +84,44 @@ function drawCircle(){
 
 function checkWinner(gameLevel){
         if(gameLevel=="Hard"){
-                checkHz();
-                checkVl();
+                checkHzHARD();
+                checkVlHARD();
                 checkDiagonalAntiClockWise();
                 checkDiagonalClockWise();
         }
         else{
-                //checkHz();
-                //checkVl();  
+                checkHz();
+                checkVl();  
         }
         
 }
 startBtn.addEventListener("click", () => {
         pressed=true;
 })
+function checkHzHARD(){
+        for(let r=0;r<rows;r++){
+                for(let c=0;c<columns-3;c++){
+                        if(board[r][c] != ' '){
+                        if(board[r][c]==board[r][c+1] && board[r][c+1]==board[r][c+2] && board[r][c+2]==board[r][c+3] && board[r][c+3]==board[r][c+4] ){
+                                showWinnerStatus(board[r][c]);
+                                return;
+                        }
+                    }
+                }
+        }
+}
+function checkVlHARD(){
+        for(let c=0;c<columns;c++){
+                for(let r=0;r<rows-3;r++){
+                        if(board[r][c] != ' '){
+                        if(board[r][c]==board[r+1][c] && board[r+1][c]==board[r+2][c] && board[r+2][c]==board[r+3][c] && board[r+3][c]==board[r+4][c]){
+                                showWinnerStatus(board[r][c]);
+                                return;
+                        }
+                    }
+                }
+        }
+}
 function checkHz(){
         for(let r=0;r<rows;r++){
                 for(let c=0;c<columns-3;c++){
