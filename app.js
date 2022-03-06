@@ -13,7 +13,10 @@ let username = document.getElementById("username").value;
 let gameMode=document.querySelector('input[name="gameMode"]:checked').value;
 let gameLevel=document.querySelector('input[name="gameLevel"]:checked').value;
 if(username == ""){
-alert("Please Enter ur username");
+swal({
+    title: "Please Enter ur username",
+    icon: "error",
+  });
 // add css style with red div on the username input 
 }else{
 

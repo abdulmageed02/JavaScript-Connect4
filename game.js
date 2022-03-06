@@ -23,6 +23,7 @@ let pressed = false
 let startBtn = document.getElementById("btn");
 let circle;
 let gameMode = "";
+let confDiv;
 
 window.onload=function(){
         setGame();
@@ -150,27 +151,28 @@ function showWinnerStatus(winner){
         status.cssText='color:black, background-color:red';
         status.innerHTML=winner;
         gameOver=true;
-        if(confirm("Do you want to restart ? ")){
-                for(let i=0;i<board.length;i++){
-                        for(let j=0;j<board[i].length;j++){
-                                board[i][j]=" ";
-                                let b = document.getElementById(i.toString()+"-"+j.toString());
-                                b.classList.remove("redCircle","yellowCircle");
-                                console.log(b);
-                                gameOver=false;
-                                pressed=false;
-                                freeColumns=[5,5,5,5,5,5,5]
-                                currentPlayer = playerRed;
-                        }
-                }
-                
-        }
-        else{
 
-                document.location.assign("http://127.0.0.1:5500/index.html")
+        //  confDiv = document.getElementById("Confirm");
+        //  confDiv.style.visibility='visible';
+        Swal.fire({  
+                title: 'Game Over',  
+                text: "Play Again?",
+                confirmButtonText: `Yes`,  
+                showDenyButton: true, 
+                icon: 'success',
+              }).then((result) => {  
+                  if (result.isConfirmed) {    
+                        conf();
+                  } else if (result.isDenied) {    
+                        document.location.assign("http://127.0.0.1:5500/index.html")
+                       }
+              });
+          
         }
-        
-}
+         
+
+       
+
 function pcTurn(){
         let r , c;
         if(gameOver){
@@ -201,3 +203,19 @@ function getRandom(min, max) {
         max = Math.floor(max);
         return Math.floor(Math.random() * (max - min) + min);
       }
+
+
+function conf (){
+        for(let i=0;i<board.length;i++){
+                for(let j=0;j<board[i].length;j++){
+                        board[i][j]=" ";
+                        let b = document.getElementById(i.toString()+"-"+j.toString());
+                        b.classList.remove("redCircle","yellowCircle");
+                        console.log(b);
+                        gameOver=false;
+                        pressed=false;
+                        freeColumns=[5,5,5,5,5,5,5]
+                        currentPlayer = playerRed;
+                }
+        }
+}
