@@ -66,11 +66,29 @@ function drawCircle(){
         console.log(r,c);
         freeColumns[c]-=1;
         
-        // checkHz();
-        // checkVl();
-        // checkDiagonalClockWise();
-        // checkDiagonalAntiClockWise();
+        //checkWinner("Hard")
+                 checkHz();
+                checkVl();
+                checkDiagonalAntiClockWise();
+                checkDiagonalClockWise();
+        
 }}
+
+function checkWinner(gameLevel){
+        if(gameLevel=="Hard"){
+                checkHz();
+                checkVl();
+                checkDiagonalAntiClockWise();
+                checkDiagonalClockWise();
+        }
+        else{
+                //checkHz();
+                //checkVl();  
+        }
+}
+startBtn.addEventListener("click", () => {
+        pressed=true;
+})
 function checkHz(){
         for(let r=0;r<rows;r++){
                 for(let c=0;c<columns-3;c++){
@@ -94,4 +112,48 @@ function checkVl(){
                     }
                 }
         }
+}
+function checkDiagonalClockWise(){
+        for(let r=0;r<rows-4;r++){
+                for(let c=0;c<columns-4;c++){
+                        if(board[r][c]!=' '){
+                                if(board[r][c]==board[r+1][c+1] && board[r+1][c+1]==board[r+2][c+2] && board[r+2][c+2]==board[r+3][c+3] && board[r+3][c+3]==board[r+4][c+4]){
+                                        showWinnerStatus(board[r][c]);
+                                        return;
+                                }
+                        }
+                }
+        }
+}
+function checkDiagonalAntiClockWise(){
+        for(let r=0;r<rows-4;r++){
+                for(let c=0;c<columns;c++){
+                        if(board[r][c]!=' '){
+                                if(board[r][c]==board[r+1][c-1] && board[r+1][c-1]==board[r+2][c-2] && board[r+2][c-2]==board[r+3][c-3] && board[r+3][c-3]==board[r+4][c-4]){
+                                        showWinnerStatus(board[r][c]);
+                                        return;
+                                }
+                        }
+                }
+        }
+}
+function showWinnerStatus(winner){
+        let status = document.getElementById("winner");
+        status.cssText='color:black, background-color:red';
+        status.innerHTML=winner;
+        gameOver=true;
+        if(confirm("Do you want to restart ? ")){
+                for(let i=0;i<board.length;i++){
+                        for(let j=0;j<board[i].length;j++){
+                                board[r][c]=" ";
+                                let b = document.getElementById(i.toString()+"-"+j.toString());
+                                b.classList.remove("redCircle","yellowCircle");
+                                console.log(b);
+                                gameOver=false;
+                                pressed=false;
+                        }
+                }
+                
+        }
+        
 }
