@@ -7,30 +7,40 @@
     <title>Document</title>
 
     <style>
-        #container{
-            width: 500px;
-            height: 500px;
+        #board{
+            width: 560px;
+            height: 550px;
             margin: auto;
             margin-top: 50px;
             margin-bottom: 50px;
             background-color: blue;
+            display: flex;
+            flex-wrap: wrap;
         }
         .circle{
-            width: 20px;
-            height: 20px;
+            width: 70px;
+            height: 70px;
             border-radius:50%;
             background-color:white;
+            margin:5px;
         }
-        Button{
-            display: block;
-            margin: auto;
+        .redCircle{
+            background-color: red;
+        }
+        .yellowCircle{
+            background-color: yellow;
+        }
+        /* #winner{
 
-        }
+        } */
 
     </style>
 </head>
 <body>
-    <div id="container">
+    <div id="winner">
+
+    </div>
+    <div id="board">
         
     </div>
     <button id="btn" type="button">Start Game</button>

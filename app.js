@@ -17,16 +17,30 @@ alert("Please Enter ur username");
 // add css style with red div on the username input 
 }else{
 
-    localStorage.setItem("username",username)
+    localStorage.setItem("username",username);
     localStorage.setItem("gameMode",gameMode);
     localStorage.setItem("gameLevel",gameLevel);
 
     window.location.href = "http://127.0.0.1:5500/Game.html";
     
 }}
-;
 
 
-// console.log(username,gameLevel,gameMode);
 
 
+
+// function notifyMe(){
+//     console.log(Notification.permission)
+//     if(Notification.permission=="granted"){
+//         alert("we have permission!")
+//     }
+//     else if(Notification.permission=="denied"){
+//         Notification.requestPermission.then(permission => {
+//             console.log(Notification.permission)
+//         });
+//         const notification = new Notification("new message from jimmy" ,{
+//             body : "hey from jimmy",
+
+//         })
+//     }
+// }
