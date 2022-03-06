@@ -22,6 +22,7 @@ let freeColumns = []
 let pressed = false
 let startBtn = document.getElementById("btn");
 let circle;
+let gameMode = "";
 
 window.onload=function(){
         setGame();
@@ -58,6 +59,12 @@ function drawCircle(){
         if(currentPlayer==playerRed){
                 currentCircle.classList.add("redCircle");
                 currentPlayer=playerYellow;
+
+        if(gameMode == "PC") { 
+                //setTimeout(pcTurn, 1000)
+                pcTurn()
+        }
+
         }
         else{
                 currentCircle.classList.add("yellowCircle");
@@ -66,7 +73,7 @@ function drawCircle(){
         console.log(r,c);
         freeColumns[c]-=1;
         
-        checkWinner("Hard")
+     checkWinner("Hard")
                 //  checkHz();
                 // checkVl();
                 // checkDiagonalAntiClockWise();
@@ -85,6 +92,7 @@ function checkWinner(gameLevel){
                 //checkHz();
                 //checkVl();  
         }
+        
 }
 startBtn.addEventListener("click", () => {
         pressed=true;
@@ -152,9 +160,44 @@ function showWinnerStatus(winner){
                                 gameOver=false;
                                 pressed=false;
                                 freeColumns=[5,5,5,5,5,5,5]
+                                currentPlayer = playerRed;
                         }
                 }
                 
         }
+        else{
+
+                document.location.assign("http://127.0.0.1:5500/index.html")
+        }
         
 }
+function pcTurn(){
+        let r , c;
+        if(gameOver){
+                return;
+        }
+
+        while(true){
+        c = getRandom(0,7)
+        r = freeColumns[c];
+        if(r<0){continue;}
+        if(board[r][c] === " "){break;}
+        }
+
+        board[r][c]=currentPlayer;
+        
+        let currentCircle = document.getElementById(r.toString()+"-"+c.toString());
+       
+                currentCircle.classList.add("yellowCircle");
+                currentPlayer=playerRed;
+                console.log(board[r][c],r,c,"PC");
+                freeColumns[c]-=1  
+
+        }
+
+
+function getRandom(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min) + min);
+      }
