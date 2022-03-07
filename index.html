@@ -6,75 +6,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <style>
-        body{
-            background-image: url('img.png'); 
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: contain;
-        }
-        h4{
-            color:black;
-            border: 3px solid black;
-            border-radius: 10px;
-            display:block;
-            width: 80px;
-            height: 20px;
-            background-color: grey;
-            text-align: center;
-            padding:10px;
-            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
-        }
-        #username{
-            background-color:lightgrey;
-        }
-        label{
-            font-size: 20px;
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-            border: 2px dashed black;
-            border-radius: 10px;
-            color:black;
-            background-color: grey;
-        }
-        button{
-            width: 80px;
-            height: 50px;
-            text-align: center;
-            padding: 10px;
-            border: 3px solid red;
-            border-radius: 10px;
-            background-color: black;
-            color: red;
-            font-size: 20px;
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-        }
-    </style>
+    <link href="CSS/Style.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 </head>
 <body>
-    <h4>UserName</h4>
-<input type="text" id="username">
+    
+    <div class = "wrap">   
+    <h1 class = register-title> WELCOME </h1> 
+    <div class="register">
+<input class="register-input"  type="text" id="username" Placeholder =  "Username">
+
+
+
 <h4>GameMode</h4>
 <br>
+<div class = "register-switch">
+<input type="radio" class="register-switch-input" id="html" name="gameMode" value="Player" checked>
+<label  class="register-switch-label" for="html">Player</label>
+<input type="radio" id="css"class="register-switch-input" name="gameMode" value="PC">
+<label class="register-switch-label" for="css">PC</label>
+</div>
 
-<input type="radio" id="html" name="gameMode" value="Player" checked>
-<label for="html">Player</label><br>
-<input type="radio" id="css" name="gameMode" value="PC">
-<label for="css">PC</label><br>
-
-
-
-<br>
 <h4>GameLevel</h4>
-<input type="radio" id="html" name="gameLevel" value="Easy" checked>
-<label for="html">Easy</label><br>
-<input type="radio" id="css" name="gameLevel" value="Hard">
-<label for="css">Hard</label><br>
-<br>
-<button type="button" id="btn">Submit</button>
 
-<button onclick="notifyMe()">Notify</button>
+<div class = "register-switch">
+<input id="EASY" type="radio"  class="register-switch-input" name="gameLevel" value="Easy" checked>
+<label for = "EASY" class="register-switch-label">Easy</label>
+<input type="radio" id="cs" name="gameLevel"  class="register-switch-input" value="Hard">
+<label  class="register-switch-label" for="cs">Hard</label>
+</div>
+<button class="raise-button with-shadow" style="background-color: #78A781; color: white;"type="button" id="btn">Submit</button>
 
+<button class="raise-button with-shadow" style="background-color: #78A781; color: white;" onclick="notifyMe()">Notify</button>
 
-<script src="app.js"></script>
+</div>
+
+<script src="JS/app.js"></script>
 </body>
 </html>
