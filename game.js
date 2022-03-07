@@ -28,6 +28,7 @@ let pressed = false
 let startBtn = document.getElementById("btn");
 let circle;
 let confDiv;
+let winFlag=0;
 
 window.onload=function(){
         setGame();
@@ -78,8 +79,10 @@ function drawCircle(){
         console.log(r,c);
         freeColumns[c]-=1;
         
-     checkWinner(gameLevel);
-        
+        checkWinner(gameLevel);
+        if(winFlag===0){
+        checkDraw();
+        }
 }}
 
 function checkWinner(gameLevel){
@@ -103,7 +106,8 @@ function checkHzHARD(){
                 for(let c=0;c<columns-3;c++){
                         if(board[r][c] != ' '){
                         if(board[r][c]==board[r][c+1] && board[r][c+1]==board[r][c+2] && board[r][c+2]==board[r][c+3] && board[r][c+3]==board[r][c+4] ){
-                                showWinnerStatus(board[r][c]);
+                                // winFlag=1;
+                                showWinnerStatus(board[r][c],currentPlayer);
                                 return;
                         }
                     }
@@ -115,7 +119,8 @@ function checkVlHARD(){
                 for(let r=0;r<rows-3;r++){
                         if(board[r][c] != ' '){
                         if(board[r][c]==board[r+1][c] && board[r+1][c]==board[r+2][c] && board[r+2][c]==board[r+3][c] && board[r+3][c]==board[r+4][c]){
-                                showWinnerStatus(board[r][c]);
+                                // winFlag=1;
+                                showWinnerStatus(board[r][c],currentPlayer);
                                 return;
                         }
                     }
@@ -127,7 +132,8 @@ function checkHz(){
                 for(let c=0;c<columns-3;c++){
                         if(board[r][c] != ' '){
                         if(board[r][c]==board[r][c+1] && board[r][c+1]==board[r][c+2] && board[r][c+2]==board[r][c+3]){
-                                showWinnerStatus(board[r][c]);
+                                // winFlag=1;
+                                showWinnerStatus(board[r][c],currentPlayer);
                                 return;
                         }
                     }
@@ -139,7 +145,8 @@ function checkVl(){
                 for(let r=0;r<rows-3;r++){
                         if(board[r][c] != ' '){
                         if(board[r][c]==board[r+1][c] && board[r+1][c]==board[r+2][c] && board[r+2][c]==board[r+3][c]){
-                                showWinnerStatus(board[r][c]);
+                                // winFlag=1;
+                                showWinnerStatus(board[r][c],currentPlayer);
                                 return;
                         }
                     }
@@ -151,7 +158,8 @@ function checkDiagonalClockWise(){
                 for(let c=0;c<columns-4;c++){
                         if(board[r][c]!=' '){
                                 if(board[r][c]==board[r+1][c+1] && board[r+1][c+1]==board[r+2][c+2] && board[r+2][c+2]==board[r+3][c+3] && board[r+3][c+3]==board[r+4][c+4]){
-                                        showWinnerStatus(board[r][c]);
+                                        // winFlag=1;
+                                        showWinnerStatus(board[r][c],currentPlayer);
                                         return;
                                 }
                         }
@@ -163,23 +171,68 @@ function checkDiagonalAntiClockWise(){
                 for(let c=0;c<columns;c++){
                         if(board[r][c]!=' '){
                                 if(board[r][c]==board[r+1][c-1] && board[r+1][c-1]==board[r+2][c-2] && board[r+2][c-2]==board[r+3][c-3] && board[r+3][c-3]==board[r+4][c-4]){
-                                        showWinnerStatus(board[r][c]);
+                                        // winFlag=1;
+                                        showWinnerStatus(board[r][c],currentPlayer);
                                         return;
                                 }
                         }
                 }
         }
 }
-function showWinnerStatus(winner){
+function showWinnerStatus(winner,loser){
         let status = document.getElementById("winner");
         status.cssText='color:black, background-color:red';
         status.innerHTML=winner;
+        let status2 = document.getElementById("loser");
+        status2.cssText='color:black, background-color:red';
+        status2.innerHTML=loser;
         gameOver=true;
 
         //  confDiv = document.getElementById("Confirm");
         //  confDiv.style.visibility='visible';
+        if(winner===playerRed){
+                Swal.fire({  
+                        title: 'Player red won',  
+                        text: "Play Again?",
+                        confirmButtonText: `Yes`,  
+                        showDenyButton: true, 
+                        icon: 'success',
+                      }).then((result) => {  
+                          if (result.isConfirmed) {    
+                                conf();
+                          } else if (result.isDenied) {    
+                                document.location.assign("index.html")
+                               }
+                      });    
+        }
+        else if(winner===playerYellow){
+                Swal.fire({  
+                        title: 'Player yellow won',  
+                        text: "Play Again?",
+                        confirmButtonText: `Yes`,  
+                        showDenyButton: true, 
+                        icon: 'success',
+                      }).then((result) => {  
+                          if (result.isConfirmed) {    
+                                conf();
+                          } else if (result.isDenied) {    
+                                document.location.assign("index.html")
+                               }
+                      });    
+        }
+}
+/////////////////////// 
+function checkDraw(){
+        let cnt=0;   
+        for(c=0;c<columns;c++){
+                if(board[0][c]!==' '){
+                        cnt++;
+                }
+        }
+        console.log(cnt);
+        if(cnt===7){
         Swal.fire({  
-                title: 'Game Over',  
+                title: 'Draw',  
                 text: "Play Again?",
                 confirmButtonText: `Yes`,  
                 showDenyButton: true, 
@@ -191,10 +244,9 @@ function showWinnerStatus(winner){
                         document.location.assign("index.html")
                        }
               });
-          
         }
-         
-
+}
+////////////////////////
        
 
 function pcTurn(){
