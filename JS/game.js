@@ -33,6 +33,7 @@ let confDiv;
 let winFlag=0;
 let TURN = document.getElementById("Turn")
 
+
 window.onload=function(){
         setGame();
 }
@@ -113,7 +114,7 @@ function checkHzHARD(){
                         if(board[r][c] != ' '){
                         if(board[r][c]==board[r][c+1] && board[r][c+1]==board[r][c+2] && board[r][c+2]==board[r][c+3] && board[r][c+3]==board[r][c+4] ){
                                 // winFlag=1;
-                                showWinnerStatus(board[r][c],currentPlayer);
+                                showWinnerStatus(board[r][c]);
                                 return;
                         }
                     }
@@ -126,7 +127,7 @@ function checkVlHARD(){
                         if(board[r][c] != ' '){
                         if(board[r][c]==board[r+1][c] && board[r+1][c]==board[r+2][c] && board[r+2][c]==board[r+3][c] && board[r+3][c]==board[r+4][c]){
                                 // winFlag=1;
-                                showWinnerStatus(board[r][c],currentPlayer);
+                                showWinnerStatus(board[r][c]);
                                 return;
                         }
                     }
@@ -139,7 +140,7 @@ function checkHz(){
                         if(board[r][c] != ' '){
                         if(board[r][c]==board[r][c+1] && board[r][c+1]==board[r][c+2] && board[r][c+2]==board[r][c+3]){
                                 // winFlag=1;
-                                showWinnerStatus(board[r][c],currentPlayer);
+                                showWinnerStatus(board[r][c]);
                                 return;
                         }
                     }
@@ -152,7 +153,7 @@ function checkVl(){
                         if(board[r][c] != ' '){
                         if(board[r][c]==board[r+1][c] && board[r+1][c]==board[r+2][c] && board[r+2][c]==board[r+3][c]){
                                 // winFlag=1;
-                                showWinnerStatus(board[r][c],currentPlayer);
+                                showWinnerStatus(board[r][c]);
                                 return;
                         }
                     }
@@ -165,7 +166,7 @@ function checkDiagonalClockWise(){
                         if(board[r][c]!=' '){
                                 if(board[r][c]==board[r+1][c+1] && board[r+1][c+1]==board[r+2][c+2] && board[r+2][c+2]==board[r+3][c+3] && board[r+3][c+3]==board[r+4][c+4]){
                                         // winFlag=1;
-                                        showWinnerStatus(board[r][c],currentPlayer);
+                                        showWinnerStatus(board[r][c]);
                                         return;
                                 }
                         }
@@ -178,14 +179,14 @@ function checkDiagonalAntiClockWise(){
                         if(board[r][c]!=' '){
                                 if(board[r][c]==board[r+1][c-1] && board[r+1][c-1]==board[r+2][c-2] && board[r+2][c-2]==board[r+3][c-3] && board[r+3][c-3]==board[r+4][c-4]){
                                         // winFlag=1;
-                                        showWinnerStatus(board[r][c],currentPlayer);
+                                        showWinnerStatus(board[r][c]);
                                         return;
                                 }
                         }
                 }
         }
 }
-function showWinnerStatus(winner,loser){
+function showWinnerStatus(winner){
         if(winner == "Red"){color = "red"} else {color = "yellow"}
         let status = document.getElementById("winner");
         status.cssText='color:black, background-color:red';
@@ -238,6 +239,7 @@ function checkDraw(){
         }
         console.log(cnt);
         if(cnt===7){
+        document.getElementById("winner").innerHTML= `<span>DRAW</span>`; 
         Swal.fire({  
                 title: 'Draw',  
                 text: "Play Again?",
