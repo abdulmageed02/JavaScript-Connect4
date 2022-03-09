@@ -1,5 +1,5 @@
 
-let username , gameMode , gameLevel,SecondPlayer;
+let username , gameMode , gameLevel,SecondPlayer,userData;
 
 if( document.referrer.split("/").at(-1) != 'index.html') {
         swal.fire({
@@ -12,7 +12,9 @@ if( document.referrer.split("/").at(-1) != 'index.html') {
         username = localStorage.getItem("username");
         gameMode = localStorage.getItem("gameMode");
         gameLevel = localStorage.getItem("gameLevel");
-    
+        
+        game_Data = document.getElementById("game_data");
+        game_Data.innerHTML = `<p> Username : ${username}</p> <p> Game Mode : ${gameMode}</p> <p> Level : ${gameLevel}</p>`
     console.log(username,gameMode,gameLevel);
 }
 
@@ -29,6 +31,7 @@ let startBtn = document.getElementById("btn");
 let circle;
 let confDiv;
 let winFlag=0;
+let TURN = document.getElementById("Turn")
 
 window.onload=function(){
         setGame();
@@ -65,16 +68,19 @@ function drawCircle(){
         if(currentPlayer==playerRed){
                 currentCircle.classList.add("redCircle");
                 currentPlayer=playerYellow;
+                Turn.innerHTML= `<p>${currentPlayer}'s Turn</p>`
 
         if(gameMode === "PC") { 
-                //setTimeout(pcTurn, 1000)
-                pcTurn()
+                document.getElementById("board").style.cssText="pointer-events: none;"
+                setTimeout(pcTurn, 2000)
+                // pcTurn()
         }
 
         }
         else{
                 currentCircle.classList.add("yellowCircle");
                 currentPlayer=playerRed;
+                Turn.innerHTML= `<p>${currentPlayer}'s Turn</p>`
         }
         console.log(r,c);
         freeColumns[c]-=1;
@@ -180,13 +186,14 @@ function checkDiagonalAntiClockWise(){
         }
 }
 function showWinnerStatus(winner,loser){
+        if(winner == "Red"){color = "red"} else {color = "yellow"}
         let status = document.getElementById("winner");
         status.cssText='color:black, background-color:red';
-        status.innerHTML=winner;
-        let status2 = document.getElementById("loser");
-        status2.cssText='color:black, background-color:red';
-        status2.innerHTML=loser;
-        gameOver=true;
+        status.innerHTML= `<span style="color:${color}">${winner} have won the game </span>`;
+        // let status2 = document.getElementById("loser");
+        // status2.cssText='color:black, background-color:red';
+        // status2.innerHTML=loser;
+        // gameOver=true;
 
         //  confDiv = document.getElementById("Confirm");
         //  confDiv.style.visibility='visible';
@@ -268,8 +275,10 @@ function pcTurn(){
        
                 currentCircle.classList.add("yellowCircle");
                 currentPlayer=playerRed;
+                Turn.innerHTML= `<p>${currentPlayer}'s Turn</p>`
                 console.log(board[r][c],r,c,"PC");
                 freeColumns[c]-=1  
+                document.getElementById("board").style.cssText="pointer-events: auto;"
 
         }
 
