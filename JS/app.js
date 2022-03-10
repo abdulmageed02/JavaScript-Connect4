@@ -24,7 +24,7 @@ swal({
     localStorage.setItem("gameMode",gameMode);
     localStorage.setItem("gameLevel",gameLevel);
 
-    window.location.href = "Game.html";
+    window.location.replace("Game.html");
     
 }}
 

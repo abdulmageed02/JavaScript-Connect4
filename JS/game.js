@@ -6,7 +6,7 @@ if( document.referrer.split("/").at(-1) != 'index.html') {
                 title: "Not accesible this way!",
                 icon: "error",
               }).then(() => {
-                document.location.assign("index.html");
+                document.location.replace("index.html");
               })
 }else{
         username = localStorage.getItem("username");
@@ -205,11 +205,13 @@ function showWinnerStatus(winner){
                         confirmButtonText: `Yes`,  
                         showDenyButton: true, 
                         icon: 'success',
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
                       }).then((result) => {  
                           if (result.isConfirmed) {    
                                 conf();
                           } else if (result.isDenied) {    
-                                document.location.assign("index.html")
+                                document.location.replace("index.html")
                                }
                       });    
         }
@@ -220,6 +222,8 @@ function showWinnerStatus(winner){
                         confirmButtonText: `Yes`,  
                         showDenyButton: true, 
                         icon: 'success',
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
                       }).then((result) => {  
                           if (result.isConfirmed) {    
                                 conf();
@@ -246,6 +250,8 @@ function checkDraw(){
                 confirmButtonText: `Yes`,  
                 showDenyButton: true, 
                 icon: 'success',
+                allowOutsideClick: false,
+                allowEscapeKey: false,
               }).then((result) => {  
                   if (result.isConfirmed) {    
                         conf();
