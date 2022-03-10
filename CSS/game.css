@@ -1,31 +1,32 @@
 body {
-background-color: #3290B1;
-    
-
-
+background-image: url(../images/colors.jpeg);
+background-size: cover;
 }
 #board{
-    width: 560px;
-    height: 550px;
+    width: 470px;
+    height: 450px;
     margin: auto;
     margin-top: 50px;
     margin-bottom: 50px;
-    background-color: blue;
+    background-color: transparent;
     display: flex;
     flex-wrap: wrap;
 }
 .circle{
-    width: 70px;
-    height: 70px;
+    width: 50px;
+    height: 50px;
     border-radius:50%;
     background-color:white;
+	opacity: 0.2;
     margin:5px;
 }
 .redCircle{
-    background-color: red;
+    background-color: #BB147E;
+	opacity: 1;
 }
 .yellowCircle{
-    background-color: yellow;
+    background-color: #3DE7F3;
+	opacity: 1;
 }
 
 #winner,#Turn{
@@ -72,16 +73,14 @@ background-color: #3290B1;
 	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.35), 0 1px 1px 0 rgba(0, 0, 0, 0.59);
 	background-color: rgba(255, 255, 255, 0.3);
 }
-#game_data{
-position: relative;
-top: -462px;
-font: italic  bold 20px Georgia, serif;
-border: solid 1px ;
-width: 300px;
-margin-left: 20px;
+#gamedata{
+width: 400px;
+margin: 0px auto;
+font: 30px bold;
+text-align: center;
+color: white;
+font-family: 'BANGERS', monospace;
 }
 #board{
 cursor: pointer;
-
-
 }

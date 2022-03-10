@@ -1,5 +1,5 @@
 
-let username , gameMode , gameLevel,SecondPlayer,userData;
+let username , gameMode , gameLevel , SecondPlayer , game_Data;
 
 if( document.referrer.split("/").at(-1) != 'index.html') {
         swal.fire({
@@ -13,8 +13,14 @@ if( document.referrer.split("/").at(-1) != 'index.html') {
         gameMode = localStorage.getItem("gameMode");
         gameLevel = localStorage.getItem("gameLevel");
         
-        game_Data = document.getElementById("game_data");
-        game_Data.innerHTML = `<p> Username : ${username}</p> <p> Game Mode : ${gameMode}</p> <p> Level : ${gameLevel}</p>`
+        game_Data = document.getElementById("gamedata");
+        
+        if(gameMode=="PC"){
+                game_Data.innerHTML = `${username} Vs PC `}
+        else{
+                SecondPlayer = localStorage.getItem("SecondPlayer");
+                game_Data.innerHTML = `${username} Vs ${SecondPlayer}`
+        }
     console.log(username,gameMode,gameLevel);
 }
 

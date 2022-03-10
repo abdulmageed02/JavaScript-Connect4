@@ -15,20 +15,20 @@
     <div class = "wrap">   
     <h1 class = register-title> WELCOME </h1> 
     <div class="register">
-<input class="register-input"  type="text" id="username" Placeholder =  "Username">
+<input class="register-input"  type="text" id="username" Placeholder =  "FirstPlayer">
+<input class="register-input"  type="text" id="SecondPlayer" Placeholder =  "SecondPlayer">
 
 
 
-<h4>GameMode</h4>
-<br>
+<h4><b>GameMode</b></h4>
 <div class = "register-switch">
-<input type="radio" class="register-switch-input" id="html" name="gameMode" value="Player" checked>
+<input type="radio" class="register-switch-input" id="html" name="gameMode" value="Player" checked onclick="secondInput(value)">
 <label  class="register-switch-label" for="html">Player</label>
-<input type="radio" id="css"class="register-switch-input" name="gameMode" value="PC">
+<input type="radio" id="css"class="register-switch-input" name="gameMode" value="PC" onclick="secondInput(value)">
 <label class="register-switch-label" for="css">PC</label>
 </div>
 
-<h4>GameLevel</h4>
+<h4><b>GameLevel</b></h4>
 
 <div class = "register-switch">
 <input id="EASY" type="radio"  class="register-switch-input" name="gameLevel" value="Easy" checked>
@@ -36,9 +36,9 @@
 <input type="radio" id="cs" name="gameLevel"  class="register-switch-input" value="Hard">
 <label  class="register-switch-label" for="cs">Hard</label>
 </div>
-<button class="raise-button with-shadow" style="background-color: #78A781; color: white;"type="button" id="btn">Submit</button>
+<button class="raise-button with-shadow" style="background-image: linear-gradient(to right, #3182c0, #307cb6);; color: white; font-family: sans-serif;"type="button" id="btn"><b>Submit</b></button>
 
-<button class="raise-button with-shadow" style="background-color: #78A781; color: white;" onclick="notifyMe()">Notify</button>
+<button class="raise-button with-shadow" style="background-image: linear-gradient(to right, #3182c0, #307cb6);; color: white; font-family: sans-serif;" onclick="notifyMe()">Notify</button>
 
 </div>
 
