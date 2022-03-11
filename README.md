@@ -7,10 +7,16 @@
 
 ## Game Info
 - A simple Connect 4 game built with javaScript
-- [Live Demo](http://54.159.57.38/index.html) deployed on EC2 instance 
+
+<br>
+
+### [Live Demo](http://54.162.254.26/index.html) deployed on EC2 instance 
+
+<br>
 
 # Features
 * Game wont allow you to play with out Entering your name, u can use numbers your name tho
+* game wont allow you to enter space in your name
 * Play with pc 
 * Play with a friend
 * game available in easy and hard
