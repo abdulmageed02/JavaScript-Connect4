@@ -39,14 +39,15 @@ background-size: cover;
 } 
 .raise-button {
 	letter-spacing: 1px;
-	font-size: 12px;
+	font:bold;
+	font-size: 25px;
 	display: block;
 	position: relative;
 	border-radius: 2px;
 	overflow: hidden;
 	-webkit-transition: 0.2s ease-out;
 	transition: 0.2s ease-out;
-	font-family: sans-serif;
+	font-family: Brush Script, monospace;
 	cursor:pointer;
 	border: none;
 	padding: 12px 20px 12px 20px;
@@ -54,7 +55,9 @@ background-size: cover;
 	background-color: transparent;
 	text-align: center;
 	color: #444;
-    width:110px
+    width:200px;
+	padding: 10px;
+
 }
 .raise-button:focus {
 	outline: none;

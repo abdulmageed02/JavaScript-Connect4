@@ -43,23 +43,12 @@ function secondInput(v){
 
 
 
-
-
-
-
-
-// function notifyMe(){
-//     console.log(Notification.permission)
-//     if(Notification.permission=="granted"){
-//         alert("we have permission!")
-//     }
-//     else if(Notification.permission=="denied"){
-//         Notification.requestPermission.then(permission => {
-//             console.log(Notification.permission)
-//         });
-//         const notification = new Notification("new message from jimmy" ,{
-//             body : "hey from jimmy",
-
-//         })
-//     }
-// }
+   function showNotification(){
+     const notification = new Notification("Connect Four",{
+       body: "Welcome To Our Game"
+     })
+   }
+   if(Notification.permission === "granted"){
+     showNotification();
+   }
+ 

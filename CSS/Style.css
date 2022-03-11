@@ -109,8 +109,9 @@ input {
 
 
 .raise-button {
+  width: 120px;
 	letter-spacing: 1px;
-	font-size: 12px;
+	font-size: 15px;
 	display: inline-block;
 	position: relative;
 	border-radius: 2px;
