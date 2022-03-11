@@ -3,7 +3,7 @@ background-image: url(../images/colors.jpeg);
 background-size: cover;
 }
 #board{
-    width: 470px;
+    width: 420px;
     height: 450px;
     margin: auto;
     margin-top: 50px;
@@ -74,7 +74,7 @@ background-size: cover;
 	background-color: rgba(255, 255, 255, 0.3);
 }
 #gamedata{
-width: 400px;
+width: 450px;
 margin: 0px auto;
 font: 30px bold;
 text-align: center;

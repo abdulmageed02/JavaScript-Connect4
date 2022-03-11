@@ -8,7 +8,7 @@ let username = document.getElementById("username").value;
 let gameMode=document.querySelector('input[name="gameMode"]:checked').value;
 let gameLevel=document.querySelector('input[name="gameLevel"]:checked').value;
 let SecondPlayer = document.getElementById("SecondPlayer").value;
-if(username == "" || SecondPlayer == ""){
+if(username == "" || (( gameMode == "Player" && SecondPlayer == ""))){
 swal({
     title: "All fields must be filled",
     icon: "error",
