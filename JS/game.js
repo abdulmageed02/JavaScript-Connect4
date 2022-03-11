@@ -11,6 +11,7 @@ let pressed = false
 let startBtn = document.getElementById("btn");
 let winFlag=0;
 let TURN = document.getElementById("Turn")
+let winnerDiv ;
 
 // check if the user have is referred from index or not 
 if( document.referrer.split("/").at(-1) != 'index.html') {
@@ -80,8 +81,8 @@ function drawCircle(){
 
         if(gameMode === "PC") { 
                 document.getElementById("board").style.cssText="pointer-events: none;"
-                setTimeout(pcTurn, 1000)
-                // pcTurn()
+               // setTimeout(pcTurn, 1000)
+                 pcTurn()
         }
 
         }
@@ -189,9 +190,9 @@ function checkDiagonalAntiClockWise(){
 }
 function showWinnerStatus(winner){
 
-        let status = document.getElementById("winner");
-        status.cssText='color:black, background-color:red';
-        status.innerHTML= `<span style="color:#FFD700">${username} have won the game </span>`;
+        winnerDiv = document.getElementById("winner");
+        winnerDiv.cssText='color:black, background-color:red';
+        winnerDiv.innerHTML= `<span style="color:#FFD700">${username} have won the game </span>`;
         gameOver = true;
        
         if(winner===playerRed){
@@ -305,6 +306,8 @@ function conf (){
                         pressed=false;
                         freeColumns=[5,5,5,5,5,5,5];
                         currentPlayer = playerRed;
+                        winnerDiv.innerHTML=""
+                        
                 }
         }
 }
