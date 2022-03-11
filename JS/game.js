@@ -1,6 +1,18 @@
+// initialize variables
+let username , gameMode , gameLevel , SecondPlayer , game_Data,board,circle
+let playerRed = "Red"
+let playerYellow = "yellow"
+let currentPlayer = playerRed
+let gameOver = false
+let rows = 6
+let columns = 7
+let freeColumns = []
+let pressed = false
+let startBtn = document.getElementById("btn");
+let winFlag=0;
+let TURN = document.getElementById("Turn")
 
-let username , gameMode , gameLevel , SecondPlayer , game_Data;
-
+// check if the user have is referred from index or not 
 if( document.referrer.split("/").at(-1) != 'index.html') {
         swal.fire({
                 title: "Not accesible this way!",
@@ -8,7 +20,7 @@ if( document.referrer.split("/").at(-1) != 'index.html') {
               }).then(() => {
                 document.location.replace("index.html");
               })
-}else{
+}else{ // if not he goes back to index page
         username = localStorage.getItem("username");
         gameMode = localStorage.getItem("gameMode");
         gameLevel = localStorage.getItem("gameLevel");
@@ -16,66 +28,54 @@ if( document.referrer.split("/").at(-1) != 'index.html') {
         game_Data = document.getElementById("gamedata");
         
         if(gameMode=="PC"){
+                SecondPlayer = "PC"
                 game_Data.innerHTML = `${username} Vs PC `}
         else{
                 SecondPlayer = localStorage.getItem("SecondPlayer");
-                game_Data.innerHTML = `${username} Vs ${SecondPlayer}`
+                game_Data.innerHTML = `<h4>${username} Vs ${SecondPlayer}</h4>`
         }
     console.log(username,gameMode,gameLevel);
 }
 
-let playerRed = "Red"
-let playerYellow = "yellow"
-let currentPlayer = playerRed
-let gameOver = false
-let board;
-let rows = 6
-let columns = 7
-let freeColumns = []
-let pressed = false
-let startBtn = document.getElementById("btn");
-let circle;
-let confDiv;
-let winFlag=0;
-let TURN = document.getElementById("Turn")
+
 
 
 window.onload=function(){
         setGame();
 }
 
-function setGame(){
+function setGame(){ // initialize Board 
         board = []
-        freeColumns=[5,5,5,5,5,5,5]
+        freeColumns=[5,5,5,5,5,5,5]  // to keep track of empty cols cells so the circles are not hanged in mid air
         for(r=0;r<rows;r++){
                 let row = []
                 for(c=0;c<columns;c++){
                         row.push(" ");
                         circle = document.createElement("div");
-                        circle.id=r.toString()+ "-" +c.toString();
+                        circle.id=r.toString()+ "-" +c.toString(); // gives each circle and id with it cords id= 0,0 is the top left circle
                         circle.classList.add("circle");
-                        document.getElementById("board").append(circle);
-                        circle.addEventListener("click",drawCircle);
+                        document.getElementById("board").append(circle); 
+                        circle.addEventListener("click",drawCircle); // add listener for each circle to keep track of which one is the player selected
                 }
                 board.push(row)
         }
 }
-function drawCircle(){
-        if(pressed){
-        if(gameOver){
+function drawCircle(){ 
+        if(pressed){ // pressed = true ==> means the user clicked on start game button 
+        if(gameOver){ // if game over = false ==> means the game ended and the player wont be apple to play unless he restarts
                 return;
         }
-        let coord = this.id.split("-");
+        let coord = this.id.split("-"); // to get id of the clicked circle 
         let r = Number(coord[0]);
         let c = Number(coord[1]);
-        r = freeColumns[c];
+        r = freeColumns[c]; // this fills the first empty circle from the bottom so it wont hang mid air 
         if(r<0){return;}
-        board[r][c]=currentPlayer;
+        board[r][c]=currentPlayer; // gives the value of pink or blue for the array[circle] so we can check win on the array later
         let currentCircle = document.getElementById(r.toString()+"-"+c.toString());
         if(currentPlayer==playerRed){
-                currentCircle.classList.add("redCircle");
-                currentPlayer=playerYellow;
-                Turn.innerHTML= `<p>${currentPlayer}'s Turn</p>`
+                currentCircle.classList.add("redCircle"); // coloring the wanted circle 
+                currentPlayer=playerYellow;                     // switch to the other player
+                Turn.innerHTML= `<p>${SecondPlayer}'s Turn</p>`
 
         if(gameMode === "PC") { 
                 document.getElementById("board").style.cssText="pointer-events: none;"
@@ -87,7 +87,7 @@ function drawCircle(){
         else{
                 currentCircle.classList.add("yellowCircle");
                 currentPlayer=playerRed;
-                Turn.innerHTML= `<p>${currentPlayer}'s Turn</p>`
+                Turn.innerHTML= `<p>${username}'s Turn</p>`
         }
         console.log(r,c);
         freeColumns[c]-=1;
@@ -193,20 +193,14 @@ function checkDiagonalAntiClockWise(){
         }
 }
 function showWinnerStatus(winner){
-        if(winner == "Red"){color = "red"} else {color = "yellow"}
+        if(winner == "Red"){color = "red"} else {color = "#FFD700"}
         let status = document.getElementById("winner");
         status.cssText='color:black, background-color:red';
-        status.innerHTML= `<span style="color:${color}">${winner} have won the game </span>`;
-        // let status2 = document.getElementById("loser");
-        // status2.cssText='color:black, background-color:red';
-        // status2.innerHTML=loser;
-        // gameOver=true;
-
-        //  confDiv = document.getElementById("Confirm");
-        //  confDiv.style.visibility='visible';
+        status.innerHTML= `<span style="color:${color}">${username} have won the game </span>`;
+       
         if(winner===playerRed){
                 Swal.fire({  
-                        title: 'Player red won',  
+                        title: `${username} won`,  
                         text: "Play Again?",
                         confirmButtonText: `Yes`,  
                         showDenyButton: true, 
@@ -223,7 +217,7 @@ function showWinnerStatus(winner){
         }
         else if(winner===playerYellow){
                 Swal.fire({  
-                        title: 'Player yellow won',  
+                        title: `${SecondPlayer} won`,  
                         text: "Play Again?",
                         confirmButtonText: `Yes`,  
                         showDenyButton: true, 
@@ -289,7 +283,7 @@ function pcTurn(){
        
                 currentCircle.classList.add("yellowCircle");
                 currentPlayer=playerRed;
-                Turn.innerHTML= `<p>${currentPlayer}'s Turn</p>`
+                Turn.innerHTML= `<p>${username}'s Turn</p>`
                 console.log(board[r][c],r,c,"PC");
                 freeColumns[c]-=1  
                 document.getElementById("board").style.cssText="pointer-events: auto;"
