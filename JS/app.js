@@ -9,7 +9,7 @@ let gameMode=document.querySelector('input[name="gameMode"]:checked').value;
 let gameLevel=document.querySelector('input[name="gameLevel"]:checked').value;
 let SecondPlayer = document.getElementById("SecondPlayer").value;
 let regName = /^[a-zA-Z0-9_]*$/; 
-if( !regName.test(username) || ((gameMode == "Player" && !regName.test(SecondPlayer)))){
+if( !regName.test(username) || username == ""|| ((gameMode == "Player" && !regName.test(SecondPlayer)))){
 swal({
     title: "All fields must be filled",
     icon: "error",
