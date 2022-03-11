@@ -4,10 +4,14 @@ body {
   color: #404040;
   background: #272727;
   background-image: url(../images/colors.jpeg);
-background-size: cover;
+  background-size: cover;
 }
-  
-
+ 
+h1{
+  text-align: center;
+  padding-top:50px;
+  color:white;
+}
 .wrap {
   margin: auto;
   position: absolute;

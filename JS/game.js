@@ -15,7 +15,7 @@ let TURN = document.getElementById("Turn")
 // check if the user have is referred from index or not 
 if( document.referrer.split("/").at(-1) != 'index.html') {
         swal.fire({
-                title: "Not accesible this way!",
+                title: "Not accessible this way!",
                 icon: "error",
               }).then(() => {
                 document.location.replace("index.html");
@@ -29,10 +29,10 @@ if( document.referrer.split("/").at(-1) != 'index.html') {
         
         if(gameMode=="PC"){
                 SecondPlayer = "PC"
-                game_Data.innerHTML = `${username} Vs PC `}
+                game_Data.innerHTML = `${username} VS PC `}
         else{
                 SecondPlayer = localStorage.getItem("SecondPlayer");
-                game_Data.innerHTML = `<h4>${username} Vs ${SecondPlayer}</h4>`
+                game_Data.innerHTML = `<h3> <span style="color:#BB147E">${username}</Span><span> VS</span><span style="color:#3DE7F3"> ${SecondPlayer}</span></h3>`
         }
     console.log(username,gameMode,gameLevel);
 }
@@ -187,10 +187,10 @@ function checkDiagonalAntiClockWise(){
         }
 }
 function showWinnerStatus(winner){
-        if(winner == "Red"){color = "red"} else {color = "#FFD700"}
+
         let status = document.getElementById("winner");
         status.cssText='color:black, background-color:red';
-        status.innerHTML= `<span style="color:${color}">${username} have won the game </span>`;
+        status.innerHTML= `<span style="color:#FFD700">${username} have won the game </span>`;
        
         if(winner===playerRed){
                 Swal.fire({  
