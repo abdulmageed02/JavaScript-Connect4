@@ -10,7 +10,7 @@
 
 
 # Features
-* Enter your nama
+* Game wont allow you to play with out Entering your name, u can use numbers your name tho
 * Play with pc 
 * Play with a friend
 * game available in easy and hard

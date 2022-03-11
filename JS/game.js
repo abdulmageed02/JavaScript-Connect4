@@ -29,10 +29,11 @@ if( document.referrer.split("/").at(-1) != 'index.html') {
         
         if(gameMode=="PC"){
                 SecondPlayer = "PC"
-                game_Data.innerHTML = `${username} VS PC `}
+                
+                game_Data.innerHTML = `<h3> <span style="color:#BB147E">${username}</span><span> VS</span><span style="color:#3DE7F3"> ${SecondPlayer}</span></h3>`}
         else{
                 SecondPlayer = localStorage.getItem("SecondPlayer");
-                game_Data.innerHTML = `<h3> <span style="color:#BB147E">${username}</Span><span> VS</span><span style="color:#3DE7F3"> ${SecondPlayer}</span></h3>`
+                game_Data.innerHTML = `<h3> <span style="color:#BB147E">${username}</span><span> VS</span><span style="color:#3DE7F3"> ${SecondPlayer}</span></h3>`
         }
     console.log(username,gameMode,gameLevel);
 }
@@ -79,7 +80,7 @@ function drawCircle(){
 
         if(gameMode === "PC") { 
                 document.getElementById("board").style.cssText="pointer-events: none;"
-                setTimeout(pcTurn, 2000)
+                setTimeout(pcTurn, 1000)
                 // pcTurn()
         }
 
@@ -191,6 +192,7 @@ function showWinnerStatus(winner){
         let status = document.getElementById("winner");
         status.cssText='color:black, background-color:red';
         status.innerHTML= `<span style="color:#FFD700">${username} have won the game </span>`;
+        gameOver = true;
        
         if(winner===playerRed){
                 Swal.fire({  
@@ -279,6 +281,8 @@ function pcTurn(){
                 console.log(board[r][c],r,c,"PC");
                 freeColumns[c]-=1  
                 document.getElementById("board").style.cssText="pointer-events: auto;"
+                checkWinner(gameLevel);
+                
 
         }
 
