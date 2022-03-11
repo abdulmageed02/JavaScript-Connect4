@@ -8,8 +8,8 @@ let username = document.getElementById("username").value;
 let gameMode=document.querySelector('input[name="gameMode"]:checked').value;
 let gameLevel=document.querySelector('input[name="gameLevel"]:checked').value;
 let SecondPlayer = document.getElementById("SecondPlayer").value;
-let regName = /^[a-zA-Z0-9_ ]*$/; 
-if( !regName.test(username) || ((gameMode == "Player"&& !regName.test(SecondPlayer)))){
+let regName = /^[a-zA-Z0-9_]*$/; 
+if( !regName.test(username) || ((gameMode == "Player" && !regName.test(SecondPlayer)))){
 swal({
     title: "All fields must be filled",
     icon: "error",
@@ -31,11 +31,14 @@ if(gameMode=="Player"){
 
 function secondInput(v){
   let sp = document.getElementById("SecondPlayer");
+  
   if(v == "PC"){
+    sp.value="PC"
     sp.style.visibility = "hidden";
     username.placeholder = "UserName"
   }
   else{
+    sp.value="PC"
     sp.style.visibility = "visible";
     username.placeholder = "First Player"
     
